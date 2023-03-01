@@ -8,7 +8,7 @@ export default function InstallExtensionNotification() {
 
     const closeModal = () => setIsOpen(false);
 
-    const link = 'https://metamask.io/download/';
+    const link = 'https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn';
 
     return (
         <Modal isOpen={isOpen} onClose={closeModal}>
@@ -16,9 +16,9 @@ export default function InstallExtensionNotification() {
                 <h1>metamask extension</h1>
                 <p>
                     To work with our application, you have to install the
-                    <a href={link}>Metamask browser extension</a>
+                    <a target='_blank' href={link}>Metamask browser extension</a>
                 </p>
-                <Button onClick={closeModal}><h1>Skip this step</h1></Button>
+                <Button onClick={closeModal}>Skip this step</Button>
             </S.Container>
         </Modal>
     );

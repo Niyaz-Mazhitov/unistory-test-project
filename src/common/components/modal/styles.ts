@@ -8,6 +8,7 @@ export const ModalWrapper = styled.div<{ isOpen: boolean }>`
   height: 100%;
   background-color: rgba(23, 23, 23, 0.81);
   display: ${props => props.isOpen ? 'block' : 'none'};
+  z-index: 3;
 `;
 
 export const ModalContent = styled.div`
