@@ -8,6 +8,7 @@ const SApp = styled.div`
   width: 100%;
   min-height: 100vh;
   padding: 14px 64px;
+  color: ${props => props.theme.color.default};
   background-color: ${props => props.theme.background.default};
 `;
 

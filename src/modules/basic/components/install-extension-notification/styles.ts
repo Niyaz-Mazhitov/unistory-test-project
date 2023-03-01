@@ -10,7 +10,7 @@ export const Container = styled.div`
   flex-direction: column;
   text-align: center;
 
-  > h1 {
+  h1 {
     text-transform: uppercase;
     color: ${props => props.theme.color.primary};
     font-family: ${props => props.theme.fontFamily.primary};

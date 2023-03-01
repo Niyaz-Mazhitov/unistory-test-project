@@ -10,7 +10,7 @@ export default function ConnectMetamask() {
 
     if (account) return <SAccount onClick={deactivate}>{account}</SAccount>;
 
-    return <Button onClick={connect}>Connect</Button>;
+    return <Button onClick={connect}>Connect metamask</Button>;
 }
 
 const SAccount = styled.div`
