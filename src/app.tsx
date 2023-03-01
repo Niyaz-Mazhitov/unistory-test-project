@@ -2,6 +2,7 @@ import React from 'react';
 import Pages from './pages';
 import ThemesProvider from './common/styles';
 import styled from 'styled-components';
+import InstallExtensionNotification from './modules/basic/components/install-extension-notification';
 
 const SApp = styled.div`
   width: 100%;
@@ -14,6 +15,7 @@ export default function App() {
     return (
         <ThemesProvider>
             <SApp>
+                <InstallExtensionNotification/>
                 <Pages/>
             </SApp>
         </ThemesProvider>
