@@ -1,10 +1,14 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  width: 500px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 24px;
+
+  div {
+    width: 500px;
+  }
 `;
 
 export const Title = styled.div`
