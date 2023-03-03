@@ -4,15 +4,15 @@ import {IBetaTestRegistrationFormData} from '../components/beta-test-registratio
 interface IInitialState {
     isShownNotification: boolean;
     isShownRegistrationData: boolean;
-    metamaskAccount: { wallet: null | string; connectProgress: number };
-    betaTestRegistrationData: { name: null | string, email: null | string };
+    metamaskAccount: { wallet: null | string; isConnected: boolean; connectProgress: number };
+    betaTestRegistrationData: { isFilled: boolean; name: null | string, email: null | string };
 }
 
 const initialState: IInitialState = {
     isShownNotification: false,
     isShownRegistrationData: false,
-    metamaskAccount: {wallet: null, connectProgress: 0},
-    betaTestRegistrationData: {name: null, email: null}
+    metamaskAccount: {wallet: null, isConnected: false, connectProgress: 0},
+    betaTestRegistrationData: {isFilled: false, name: null, email: null}
 };
 
 const slice = createSlice({
@@ -36,11 +36,15 @@ const slice = createSlice({
         },
 
         setMetamaskAccount(state, action: PayloadAction<null | string>) {
-            state.metamaskAccount = {wallet: action.payload, connectProgress: action.payload ? 50 : 0};
+            state.metamaskAccount = {
+                isConnected: true,
+                wallet: action.payload,
+                connectProgress: action.payload ? 50 : 0
+            };
         },
 
         setBetaTestRegistrationData(state, action: PayloadAction<IBetaTestRegistrationFormData>) {
-            state.betaTestRegistrationData = action.payload;
+            state.betaTestRegistrationData = {...action.payload, isFilled: true};
         }
     }
 });

@@ -7,7 +7,7 @@ import BetaTestRegistrationInfo from './info';
 
 export default function BetaTestRegistration() {
     const dispatch = useAppDispatch();
-    const {name} = useAppSelector(state => state.basic.betaTestRegistrationData);
+    const isFilled = useAppSelector(state => state.basic.betaTestRegistrationData.isFilled);
 
     const onSubmit = (formData: IBetaTestRegistrationFormData) => {
         dispatch(basicActions.setBetaTestRegistrationData(formData));
@@ -23,7 +23,7 @@ export default function BetaTestRegistration() {
                 dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
                 ex ea commodo consequat.
             </S.Description>
-            {name ? <BetaTestRegistrationInfo/> : <Form onSubmit={onSubmit}/>}
+            {isFilled ? <BetaTestRegistrationInfo/> : <Form onSubmit={onSubmit}/>}
         </S.Container>
     );
 }

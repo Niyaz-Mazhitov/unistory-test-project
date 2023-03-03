@@ -4,8 +4,11 @@ import Welcome from './welcome';
 import BetaTestRegistration from '../../modules/basic/components/beta-test-registration';
 import RoadmapStats from './roadmap-stats';
 import MembersList from '../../modules/basic/components/members-list';
+import {useAppSelector} from '../../common/store';
 
 export default function HomePage() {
+    const isFilled = useAppSelector(state => state.basic.betaTestRegistrationData.isFilled);
+
     return (
         <>
             <SWelcomeContainer>
@@ -15,7 +18,7 @@ export default function HomePage() {
             <SBox>
                 <SRow>
                     <BetaTestRegistration/>
-                    <MembersList/>
+                    {isFilled && <MembersList/>}
                 </SRow>
             </SBox>
         </>

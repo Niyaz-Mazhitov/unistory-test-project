@@ -3,6 +3,7 @@ import * as S from './styles';
 import {Field, InjectedFormProps, reduxForm} from 'redux-form';
 import {Input, required} from '../../../../common/form';
 import Button from '../../../../common/components/button';
+import {useAppSelector} from '../../../../common/store';
 
 export interface IBetaTestRegistrationFormData {
     name: string;
@@ -11,6 +12,7 @@ export interface IBetaTestRegistrationFormData {
 
 function Form(props: InjectedFormProps<IBetaTestRegistrationFormData>) {
     const {handleSubmit, invalid} = props;
+    const isConnected = useAppSelector(state => state.basic.metamaskAccount.isConnected);
 
     const field = {validate: required, component: Input};
 
@@ -27,9 +29,11 @@ function Form(props: InjectedFormProps<IBetaTestRegistrationFormData>) {
                 <span>email</span>
                 <Field name='email' placeholder={emailPlaceholder} {...field}/>
             </S.Field>
-           <div>
-               <Button disabled={invalid} type='submit'>Get early access</Button>
-           </div>
+            <div>
+                <Button disabled={invalid || !isConnected} type='submit'>
+                    {isConnected ? 'Get early access' : 'Need to connect'}
+                </Button>
+            </div>
         </S.Form>
     );
 }
