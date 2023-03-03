@@ -28,14 +28,12 @@ export const ProgressBarContainer = styled.div`
   position: absolute;
   width: 550px;
   height: 550px;
-  transition: 1s;
   display: flex;
   justify-content: center;
 `;
 
 export const ProgressBarCircle = styled.svg`
   transform: rotate(-90deg);
-  transition: 1s;
 `;
 
 export const ProgressBarForeground = styled.circle<{ progress: number }>`
@@ -44,8 +42,8 @@ export const ProgressBarForeground = styled.circle<{ progress: number }>`
   stroke-width: .1;
   stroke-dasharray: 300;
   stroke-dashoffset: 0;
+  transition: 3s;
   ${({progress}) => css`stroke-dashoffset: ${300 - (300 * progress) / 100};`}
-  transition: 1s;
 `;
 
 export const Title = styled.div`
@@ -101,7 +99,7 @@ export const BottomDot = styled.div`
   justify-content: center;
 `;
 
-export const Dot = styled.div<{ isShown: boolean }>`
+export const Dot = styled.div<{ delay?: number; backDelay?: number; isShown: boolean }>`
   width: 6px;
   height: 6px;
   max-width: 6px;
@@ -109,5 +107,5 @@ export const Dot = styled.div<{ isShown: boolean }>`
   background-color: #E75626;
   border-radius: 100%;
   opacity: ${props => props.isShown ? 1 : 0};
-  transition: 1.5s;
+  transition: ${props => props.isShown ? props.delay : props.backDelay}s;
 `;

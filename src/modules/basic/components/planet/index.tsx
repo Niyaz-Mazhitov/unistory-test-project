@@ -23,11 +23,11 @@ function ProgressBar() {
         <S.ProgressBarContainer>
             <S.Dots>
                 <S.TopDots>
-                    <S.Dot isShown={72 <= progress}/>
-                    <S.Dot isShown={22 <= progress}/>
+                    <S.Dot delay={9} backDelay={2} isShown={72 <= progress}/>
+                    <S.Dot delay={3} backDelay={3} isShown={22 <= progress}/>
                 </S.TopDots>
                 <S.BottomDot>
-                    <S.Dot isShown={47 <= progress}/>
+                    <S.Dot delay={6} backDelay={1} isShown={47 <= progress}/>
                 </S.BottomDot>
             </S.Dots>
             <S.ProgressBarCircle viewBox='0 0 100 100'>

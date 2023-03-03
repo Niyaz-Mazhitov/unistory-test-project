@@ -36,7 +36,7 @@ const slice = createSlice({
         },
 
         setMetamaskAccount(state, action: PayloadAction<null | string>) {
-            state.metamaskAccount = {wallet: action.payload, connectProgress: action.payload ? 100 : 0};
+            state.metamaskAccount = {wallet: action.payload, connectProgress: action.payload ? 50 : 0};
         },
 
         setBetaTestRegistrationData(state, action: PayloadAction<IBetaTestRegistrationFormData>) {
