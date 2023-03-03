@@ -19,7 +19,7 @@ export const Title = styled.div<{ isMask?: boolean }>`
     -webkit-text-stroke-color: white;
   }
 
-  ${props => props.isMask && ({color: props.theme.color.primary, clipPath: 'circle(160px at 835px)'})}
+  ${props => props.isMask && ({color: props.theme.color.primary, clipPath: 'circle(160px at 855px)'})}
 `;
 
 export const Description = styled.div`

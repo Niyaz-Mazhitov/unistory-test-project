@@ -1,13 +1,16 @@
 import styled, {css} from 'styled-components';
 
 export const PlanetContainer = styled.div`
-  width: 500px;
-  height: 500px;
+  width: 540px;
+  height: 540px;
   left: 650px;
   display: flex;
   justify-content: center;
   align-items: center;
   position: absolute;
+  border-radius: 100%;
+  background: rgb(23, 23, 25);
+  background: radial-gradient(circle, rgba(23, 23, 25, 1) 65%, rgba(255, 255, 255, 0.1) 100%);
 
   img {
     position: absolute;
