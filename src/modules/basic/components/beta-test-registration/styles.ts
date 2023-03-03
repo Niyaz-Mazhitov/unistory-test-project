@@ -42,3 +42,9 @@ export const Field = styled.div`
     font-family: ${props => props.theme.fontFamily.primary};
   }
 `;
+
+export const InfoContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+`;

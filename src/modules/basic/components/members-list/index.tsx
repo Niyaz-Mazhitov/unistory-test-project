@@ -2,9 +2,17 @@ import React from 'react';
 import * as S from './styles';
 import {useFindAllMembersQuery} from '../../api';
 import {NavLink} from 'react-router-dom';
+import {useAppDispatch, useAppSelector} from '../../../../common/store';
+import {basicActions} from '../../store';
 
 export default function MembersList() {
+    const dispatch = useAppDispatch();
     const {data} = useFindAllMembersQuery('');
+    const metamaskWallet = useAppSelector(state => state.basic.metamaskAccount.wallet);
+    const {name, email} = useAppSelector(state => state.basic.betaTestRegistrationData);
+    const isShownRegistrationData = useAppSelector(state => state.basic.isShownRegistrationData);
+
+    const reset = () => dispatch(basicActions.changeShownRegistrationData(false));
 
     return (
         <S.Container>
@@ -12,19 +20,29 @@ export default function MembersList() {
             <S.TableContainer>
                 <S.Table>
                     <thead>
-                    <tr>
+                    <S.Tr disabledHover={true}>
                         <th>Name</th>
                         <th>Email</th>
                         <th>Wallet</th>
-                    </tr>
+                    </S.Tr>
                     </thead>
                     <tbody>
+                    {isShownRegistrationData && <S.Tr active={true}>
+                        <td>{name}</td>
+                        <td>{email}</td>
+                        <td>
+                            <div>
+                                {metamaskWallet ? metamaskWallet : 'Need to connect'}
+                                <span onClick={reset}>X</span>
+                            </div>
+                        </td>
+                    </S.Tr>}
                     {data?.items.map(person => (
-                        <tr key={person.id}>
+                        <S.Tr key={person.id}>
                             <td><NavLink to={`/members/${person.id}`}>{person.username}</NavLink></td>
                             <td>{person.email}</td>
                             <td>{person.address}</td>
-                        </tr>
+                        </S.Tr>
                     ))}
                     </tbody>
                 </S.Table>

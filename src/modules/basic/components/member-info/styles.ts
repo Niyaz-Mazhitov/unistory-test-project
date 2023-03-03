@@ -11,23 +11,3 @@ export const Container = styled.div`
     font-size: 48px;
   }
 `;
-
-export const Rows = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 22px;
-`;
-
-export const Row = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-
-  span {
-    font-size: 24px;
-  }
-
-  h1 {
-    color: ${props => props.theme.color.primary};
-  }
-`;

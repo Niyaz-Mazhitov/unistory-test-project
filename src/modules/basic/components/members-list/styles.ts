@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 
 export const Container = styled.div`
   width: 100%;
@@ -17,7 +17,7 @@ export const Container = styled.div`
 export const TableContainer = styled.div`
   width: 100%;
   overflow-y: auto;
-  
+
   &::-webkit-scrollbar {
     width: 2px;
     background-color: #ffffff;
@@ -48,11 +48,34 @@ export const Table = styled.table`
     font-size: 14px;
     font-family: ${props => props.theme.fontFamily.secondary};
     border-top: 1px solid #ffffff;
-  }
 
-  tr:hover {
-    * {
-      color: ${props => props.theme.color.primary};
+    div {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+
+      span {
+        margin: 0 8px;
+        color: ${props => props.theme.color.default};
+
+        &:hover {
+          color: ${props => props.theme.color.primary};
+        }
+      }
     }
   }
+`;
+
+export const Tr = styled.tr<{ active?: boolean; disabledHover?: boolean }>`
+  ${props => props.active && css`
+    color: ${props => props.theme.color.primary};
+  `}
+  
+  ${props => !props.disabledHover && css`
+    &:hover {
+      * {
+        color: ${props => props.theme.color.primary};
+      }
+    }
+  `}
 `;
