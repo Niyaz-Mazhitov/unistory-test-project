@@ -1,6 +1,7 @@
 import React from 'react';
 import * as S from './styles';
 import {useFindAllMembersQuery} from '../../api';
+import {NavLink} from 'react-router-dom';
 
 export default function MembersList() {
     const {data} = useFindAllMembersQuery('');
@@ -20,7 +21,7 @@ export default function MembersList() {
                     <tbody>
                     {data?.items.map(person => (
                         <tr key={person.id}>
-                            <td>{person.username}</td>
+                            <td><NavLink to={`/members/${person.id}`}>{person.username}</NavLink></td>
                             <td>{person.email}</td>
                             <td>{person.address}</td>
                         </tr>

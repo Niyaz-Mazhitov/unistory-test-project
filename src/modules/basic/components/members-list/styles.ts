@@ -19,7 +19,7 @@ export const TableContainer = styled.div`
   overflow-y: auto;
   
   &::-webkit-scrollbar {
-    width: 1px;
+    width: 2px;
     background-color: #ffffff;
   }
 
@@ -30,6 +30,11 @@ export const TableContainer = styled.div`
 
 export const Table = styled.table`
   width: 100%;
+
+  a {
+    color: ${props => props.theme.color.default};
+    text-decoration: none;
+  }
 
   th {
     text-align: left;
@@ -43,5 +48,11 @@ export const Table = styled.table`
     font-size: 14px;
     font-family: ${props => props.theme.fontFamily.secondary};
     border-top: 1px solid #ffffff;
+  }
+
+  tr:hover {
+    * {
+      color: ${props => props.theme.color.primary};
+    }
   }
 `;

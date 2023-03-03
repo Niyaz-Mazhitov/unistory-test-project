@@ -1,10 +1,10 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
 import {baseUrl} from '../../../common/api';
-import {IPerson} from '../interfaces';
+import {IMember} from '../interfaces';
 
 interface IFindAllMembersRes {
     meta: { currentPage: number; perPage: number; totalPages: number },
-    items: IPerson[];
+    items: IMember[];
 }
 
 export const memberApi = createApi({
@@ -15,8 +15,14 @@ export const memberApi = createApi({
             query: () => ({
                 url: 'data'
             })
+        }),
+
+        findOneMember: builder.query<IMember, number>({
+            query: (memberId: number) => ({
+                url: `data/id/${memberId}`
+            })
         })
     })
 });
 
-export const {useFindAllMembersQuery} = memberApi;
+export const {useFindAllMembersQuery, useFindOneMemberQuery} = memberApi;

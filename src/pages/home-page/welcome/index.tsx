@@ -1,16 +1,11 @@
 import React from 'react';
 import * as S from './styles';
-import planet from './planet.png';
+import Planet from '../../../modules/basic/components/planet';
 
 export default function Welcome() {
     return (
         <S.Container>
-            <S.PlanetContainer>
-                <S.InnerRing size={446}/>
-                <S.InnerRing isLine size={370}/>
-                <S.InnerRing isLine size={384}/>
-                <img src={planet} alt=''/>
-            </S.PlanetContainer>
+            <Planet/>
             <S.Title>
                 Explore Your own planet
                 <br/>
@@ -22,8 +17,10 @@ export default function Welcome() {
                 In <span>our New</span> metaverse
             </S.Title>
             <S.Description>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                et
+                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                aliquip
                 ex ea commodo consequat.
             </S.Description>
         </S.Container>
