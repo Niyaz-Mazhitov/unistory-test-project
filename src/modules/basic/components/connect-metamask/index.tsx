@@ -1,14 +1,26 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useEthers} from '@usedapp/core';
 import Button from '../../../../common/components/button';
 import styled from 'styled-components';
+import {useAppDispatch} from '../../../../common/store';
+import {basicActions} from '../../store';
 
 export default function ConnectMetamask() {
+    const dispatch = useAppDispatch();
     const {account, deactivate, activateBrowserWallet} = useEthers();
+
+    useEffect(() => {
+        account && dispatch(basicActions.setMetamaskAccount(account));
+    }, [account]);
 
     const connect = () => activateBrowserWallet();
 
-    if (account) return <SAccount onClick={deactivate}>{account}</SAccount>;
+    const disconnect = () => {
+        deactivate();
+        dispatch(basicActions.setMetamaskAccount(null));
+    };
+
+    if (account) return <SAccount onClick={disconnect}>{account}</SAccount>;
 
     return <Button onClick={connect}>Connect metamask</Button>;
 }

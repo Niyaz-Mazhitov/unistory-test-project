@@ -101,9 +101,11 @@ export const BottomDot = styled.div`
   justify-content: center;
 `;
 
-export const Dot = styled.div<{ isShown?: boolean }>`
+export const Dot = styled.div<{ isShown: boolean }>`
   width: 6px;
   height: 6px;
+  max-width: 6px;
+  max-height: 6px;
   background-color: #E75626;
   border-radius: 100%;
   opacity: ${props => props.isShown ? 1 : 0};

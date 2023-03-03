@@ -1,17 +1,20 @@
-import React, {useState} from 'react';
+import React from 'react';
 import * as S from './styles';
 import Modal from '../../../../common/components/modal';
 import Button from '../../../../common/components/button';
+import {useAppDispatch, useAppSelector} from '../../../../common/store';
+import {basicActions} from '../../store';
 
 export default function InstallExtensionNotification() {
-    const [isOpen, setIsOpen] = useState<boolean>(true);
+    const dispatch = useAppDispatch();
+    const isShown = useAppSelector(state => state.basic.isShownNotification);
 
-    const closeModal = () => setIsOpen(false);
+    const closeModal = () => dispatch(basicActions.changeNotificationStatus(true));
 
     const link = 'https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn';
 
     return (
-        <Modal isOpen={isOpen} onClose={closeModal}>
+        <Modal isOpen={!isShown} onClose={closeModal}>
             <S.Container>
                 <h1>metamask extension</h1>
                 <p>
