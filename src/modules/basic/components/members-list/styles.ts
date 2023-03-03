@@ -2,7 +2,7 @@ import styled, {css} from 'styled-components';
 
 export const Container = styled.div`
   width: 100%;
-  max-height: 75vh;
+  max-height: 76vh;
   display: flex;
   flex-direction: column;
   gap: 35px;
@@ -17,19 +17,27 @@ export const Container = styled.div`
 export const TableContainer = styled.div`
   width: 100%;
   overflow-y: auto;
+  overflow-x: hidden;
 
   &::-webkit-scrollbar {
-    width: 2px;
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    border-radius: 10px;
     background-color: #ffffff;
+    border: 4.5px solid ${props => props.theme.background.default};
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: #E75626;
+    border-radius: 10px;
+    background-color: ${props => props.theme.background.secondary};
   }
 `;
 
 export const Table = styled.table`
   width: 100%;
+  padding-right: 27px;
 
   a {
     color: ${props => props.theme.color.default};
@@ -57,6 +65,7 @@ export const Table = styled.table`
       span {
         margin: 0 8px;
         color: ${props => props.theme.color.default};
+        cursor: pointer;
 
         &:hover {
           color: ${props => props.theme.color.primary};
@@ -70,11 +79,15 @@ export const Tr = styled.tr<{ active?: boolean; disabledHover?: boolean }>`
   ${props => props.active && css`
     color: ${props => props.theme.color.primary};
   `}
-  
+
   ${props => !props.disabledHover && css`
     &:hover {
       * {
         color: ${props => props.theme.color.primary};
+        
+        span {
+          color: ${props => props.theme.color.default};
+        }
       }
     }
   `}

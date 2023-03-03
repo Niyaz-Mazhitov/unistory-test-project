@@ -32,7 +32,7 @@ export default function MembersList() {
                         <td>{email}</td>
                         <td>
                             <div>
-                                {metamaskWallet ? metamaskWallet : 'Need to connect'}
+                                {metamaskWallet}
                                 <span onClick={reset}>X</span>
                             </div>
                         </td>
