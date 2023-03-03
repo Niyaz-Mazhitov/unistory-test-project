@@ -14,6 +14,14 @@ export const Container = styled.div`
   }
 `;
 
+export const Loading = styled.div`
+  text-align: center;
+  
+  h1 {
+    color: ${props => props.theme.color.primary};
+  }
+`;
+
 export const TableContainer = styled.div`
   width: 100%;
   overflow-y: auto;

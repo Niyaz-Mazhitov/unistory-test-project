@@ -20,7 +20,7 @@ export default function ConnectMetamask() {
         dispatch(basicActions.setMetamaskAccount(null));
     };
 
-    if (account) return <SAccount onClick={disconnect}>{account}</SAccount>;
+    if (account) return <SAccount>{account}</SAccount>;
 
     return <Button onClick={connect}>Connect metamask</Button>;
 }

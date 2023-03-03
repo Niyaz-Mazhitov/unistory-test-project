@@ -8,6 +8,7 @@ import {basicActions} from '../../store';
 export default function BetaTestRegistrationInfo() {
     const dispatch = useAppDispatch();
     const {name, email} = useAppSelector(state => state.basic.betaTestRegistrationData);
+    const isShownRegistrationData = useAppSelector(state => state.basic.isShownRegistrationData);
 
     const showData = () => dispatch(basicActions.changeShownRegistrationData(true));
 
@@ -16,7 +17,7 @@ export default function BetaTestRegistrationInfo() {
     return (
         <S.InfoContainer>
             <Rows rows={rows}/>
-            <div onClick={showData}><Button>List me to the table</Button></div>
+            <div onClick={showData}><Button disabled={isShownRegistrationData}>List me to the table</Button></div>
         </S.InfoContainer>
     );
 }
