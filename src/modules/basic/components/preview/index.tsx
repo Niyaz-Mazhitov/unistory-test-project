@@ -6,11 +6,19 @@ import {PlanetInners} from './styles';
 export default function Preview() {
     const [coordinates, setCoordinates] = useState<{ x: number; y: number }>({x: 110, y: 110});
 
+    let timer: NodeJS.Timeout;
+
     const onMove = (event: MouseEvent<HTMLDivElement>) => {
-        setCoordinates({x: event.nativeEvent.offsetX - 160, y: event.nativeEvent.offsetY - 160});
+        timer && clearTimeout(timer);
+
+        timer = setTimeout(() => {
+            setCoordinates({x: event.nativeEvent.offsetX - 160, y: event.nativeEvent.offsetY - 160});
+        }, 100);
     };
 
     const onLeave = () => {
+        timer && clearTimeout(timer);
+
         setCoordinates({x: 110, y: 110});
     };
 

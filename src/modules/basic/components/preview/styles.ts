@@ -22,7 +22,7 @@ export const PlanetContainer = styled.div<{ x: number; y: number }>`
     height: 320px;
     top: ${props => props.y}px;
     left: ${props => props.x}px;
-    transition: 1.5s;
+    transition: 3s;
   }
 `;
 
@@ -131,7 +131,7 @@ export const Title = styled.div<{ isMask?: boolean; x?: number; y?: number }>`
   position: absolute;
   font-size: 120px;
   text-transform: uppercase;
-  transition: 1.4s;
+  transition: 3s;
   font-family: ${props => props.theme.fontFamily.primary};
   color: ${props => props.isMask && props.theme.color.primary};
   clip-path: ${props => props.isMask && css`circle(160px at ${props.x}px ${props.y}px)`};
