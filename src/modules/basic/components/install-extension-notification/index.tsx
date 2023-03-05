@@ -9,7 +9,7 @@ export default function InstallExtensionNotification() {
     const dispatch = useAppDispatch();
     const isShown = useAppSelector(state => state.basic.isShownNotification);
 
-    const closeModal = () => dispatch(basicActions.changeNotificationStatus(true));
+    const closeModal = () => dispatch(basicActions.changeShowingNotificationStatus(true));
 
     const link = 'https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn';
 

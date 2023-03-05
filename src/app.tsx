@@ -1,24 +1,29 @@
 import React from 'react';
-import Pages from './pages';
-import ThemesProvider from './common/styles';
 import styled from 'styled-components';
-import InstallExtensionNotification from './modules/basic/components/install-extension-notification';
-
-const SApp = styled.div`
-  width: 100%;
-  min-height: 100vh;
-  padding: 14px 64px;
-  color: ${props => props.theme.color.default};
-  background-color: ${props => props.theme.background.default};
-`;
+import ThemesProvider, {GlobalStyles} from './common/styles';
+import Pages from './pages';
 
 export default function App() {
     return (
         <ThemesProvider>
+            <GlobalStyles/>
             <SApp>
-                <InstallExtensionNotification/>
-                <Pages/>
+                <main>
+                    <Pages/>
+                </main>
             </SApp>
         </ThemesProvider>
     );
 }
+
+const SApp = styled.div`
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+
+  main {
+    min-width: 1440px;
+    max-width: 1440px;
+  }
+`;

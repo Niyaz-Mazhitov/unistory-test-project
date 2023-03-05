@@ -1,17 +1,29 @@
-import React from 'react';
+import React, {MouseEvent, useState} from 'react';
 import * as S from './styles';
-import Planet from '../../../modules/basic/components/planet';
+import planet from './planet.png';
 
-export default function Welcome() {
+export default function Preview() {
+    const [coordinates, setCoordinates] = useState<{ x: number; y: number }>({x: 110, y: 110});
+
+    const onMove = (event: MouseEvent<HTMLDivElement>) => {
+        setCoordinates({x: event.nativeEvent.offsetX - 160, y: event.nativeEvent.offsetY - 160});
+    };
+
+    const onLeave = () => {
+        setCoordinates({x: 110, y: 110});
+    };
+
     return (
         <S.Container>
-            <Planet/>
+            <S.PlanetContainer x={coordinates.x} y={coordinates.y} onMouseMove={onMove} onMouseLeave={onLeave}>
+                <img src={planet} alt=''/>
+            </S.PlanetContainer>
             <S.Title>
                 Explore Your own planet
                 <br/>
                 In <span>our New</span> metaverse
             </S.Title>
-            <S.Title isMask>
+            <S.Title isMask x={coordinates.x + 730} y={coordinates.y + 25}>
                 Explore Your own planet
                 <br/>
                 In <span>our New</span> metaverse

@@ -1,50 +1,55 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {IBetaTestRegistrationFormData} from '../components/beta-test-registration/form';
 
 interface IInitialState {
+    // Show notification about install extension metamask
     isShownNotification: boolean;
-    isShownRegistrationData: boolean;
-    metamaskAccount: { wallet: null | string; isConnected: boolean; connectProgress: number };
-    betaTestRegistrationData: { isFilled: boolean; name: null | string, email: null | string };
+    // Metamask account connect status and wallet
+    metamaskAccount: { isConnected: boolean; wallet: null | string };
+    // Beta test registration form data
+    userData: { isShown: boolean; isFilled: boolean; name: null | string, email: null | string };
 }
 
 const initialState: IInitialState = {
     isShownNotification: false,
-    isShownRegistrationData: false,
-    metamaskAccount: {wallet: null, isConnected: false, connectProgress: 0},
-    betaTestRegistrationData: {isFilled: false, name: null, email: null}
+    metamaskAccount: {isConnected: false, wallet: null},
+    userData: {isShown: false, isFilled: false, name: null, email: null}
 };
 
 const slice = createSlice({
     name: 'basic',
     initialState,
     reducers: {
+        // Initialization store reducer
         init() {
             return initialState;
         },
 
-        resetBetaTestRegistrationData(state) {
-            state.betaTestRegistrationData = initialState.betaTestRegistrationData;
+        // Reset metamask account data
+        resetMetamaskAccount(state) {
+            state.metamaskAccount = initialState.metamaskAccount;
         },
 
-        changeNotificationStatus(state, action: PayloadAction<boolean>) {
-            state.isShownNotification = action.payload;
-        },
-
-        changeShownRegistrationData(state, action: PayloadAction<boolean>) {
-            state.isShownRegistrationData = action.payload;
-        },
-
-        setMetamaskAccount(state, action: PayloadAction<null | string>) {
+        // Needed for fill metamask account and update connect status
+        setMetamaskAccount(state, action: PayloadAction<{ active: boolean, account: string }>) {
             state.metamaskAccount = {
-                isConnected: true,
-                wallet: action.payload,
-                connectProgress: action.payload ? 50 : 0
+                wallet: action.payload.account,
+                isConnected: action.payload.active
             };
         },
 
-        setBetaTestRegistrationData(state, action: PayloadAction<IBetaTestRegistrationFormData>) {
-            state.betaTestRegistrationData = {...action.payload, isFilled: true};
+        // Needed for fill user data with form beta test registration
+        setUserData(state, action: PayloadAction<{ name: string; email: string }>) {
+            state.userData = {...action.payload, isShown: false, isFilled: true};
+        },
+
+        // Needed for showing user data and not showing user data from members list
+        changeShowingUserDataStatus(state, action: PayloadAction<boolean>) {
+            state.userData.isShown = action.payload;
+        },
+
+        // Change showing install metamask notification
+        changeShowingNotificationStatus(state, action: PayloadAction<boolean>) {
+            state.isShownNotification = action.payload;
         }
     }
 });

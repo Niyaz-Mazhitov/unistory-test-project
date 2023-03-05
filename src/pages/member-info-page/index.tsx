@@ -17,7 +17,8 @@ export default function MemberInfoPage() {
 
 const SContainer = styled.div`
   width: 100%;
-  height: calc(100vh - 100px);
+  // 72px header height TODO...
+  height: calc(100vh - 72px);
   display: flex;
   align-items: center;
 `;

@@ -5,13 +5,3 @@
     padding: 0;
     box-sizing: border-box;
 }
-
-body::-webkit-scrollbar {
-    height: 5px;
-    width: 5px;
-    background-color: #262628;
-}
-
-body::-webkit-scrollbar-thumb {
-    background-color: #E75626;
-}

@@ -7,10 +7,10 @@ import BetaTestRegistrationInfo from './info';
 
 export default function BetaTestRegistration() {
     const dispatch = useAppDispatch();
-    const isFilled = useAppSelector(state => state.basic.betaTestRegistrationData.isFilled);
+    const isFilled = useAppSelector(state => state.basic.userData.isFilled);
 
     const onSubmit = (formData: IBetaTestRegistrationFormData) => {
-        dispatch(basicActions.setBetaTestRegistrationData(formData));
+        dispatch(basicActions.setUserData(formData));
     };
 
     return (

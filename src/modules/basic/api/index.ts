@@ -2,7 +2,7 @@ import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
 import {baseUrl} from '../../../common/api';
 import {IMember} from '../interfaces';
 
-interface IFindAllMembersRes {
+export interface IFindAllMembersRes {
     meta: { currentPage: number; perPage: number; totalPages: number },
     items: IMember[];
 }

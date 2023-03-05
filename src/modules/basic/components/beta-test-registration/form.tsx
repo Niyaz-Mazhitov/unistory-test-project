@@ -1,9 +1,9 @@
 import React from 'react';
 import * as S from './styles';
 import {Field, InjectedFormProps, reduxForm} from 'redux-form';
-import {Input, required} from '../../../../common/form';
 import Button from '../../../../common/components/button';
 import {useAppSelector} from '../../../../common/store';
+import {Input, required} from '../../../../common/components/form';
 
 export interface IBetaTestRegistrationFormData {
     name: string;

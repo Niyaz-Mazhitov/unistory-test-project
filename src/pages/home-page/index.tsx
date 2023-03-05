@@ -1,47 +1,45 @@
 import React from 'react';
 import styled from 'styled-components';
-import Welcome from './welcome';
+import Preview from '../../modules/basic/components/preview';
+import RoadmapStats from '../../modules/basic/components/roadmap-stats';
 import BetaTestRegistration from '../../modules/basic/components/beta-test-registration';
-import RoadmapStats from './roadmap-stats';
-import MembersList from '../../modules/basic/components/members-list';
 import {useAppSelector} from '../../common/store';
+import MembersList from '../../modules/basic/components/members-list';
 
 export default function HomePage() {
-    const isFilled = useAppSelector(state => state.basic.betaTestRegistrationData.isFilled);
+    const isFilled = useAppSelector(state => state.basic.userData.isFilled);
 
     return (
-        <>
-            <SWelcomeContainer>
-                <Welcome/>
+        <SHomePage>
+            <section>
+                <Preview/>
+                <div/>
                 <RoadmapStats/>
-            </SWelcomeContainer>
-            <SBox>
-                <SRow>
+            </section>
+            <section>
+                <Alignment>
                     <BetaTestRegistration/>
                     {isFilled && <MembersList/>}
-                </SRow>
-            </SBox>
-        </>
+                </Alignment>
+            </section>
+        </SHomePage>
     );
 }
 
-const SWelcomeContainer = styled.div`
+const SHomePage = styled.div`
   width: 100%;
-  min-height: calc(100vh - 86px);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+
+  > section {
+    width: 100%;
+    height: calc(100vh - 72px);
+    max-height: calc(100vh - 72px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 `;
 
-const SBox = styled.div`
-  width: 100%;
-  min-height: calc(100vh - 14px);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`;
-
-const SRow = styled.div`
+const Alignment = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;

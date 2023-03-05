@@ -7,17 +7,18 @@ import {basicActions} from '../../store';
 
 export default function ConnectMetamask() {
     const dispatch = useAppDispatch();
-    const {account, deactivate, activateBrowserWallet} = useEthers();
+    const {active, account, deactivate, activateBrowserWallet} = useEthers();
 
     useEffect(() => {
-        account && dispatch(basicActions.setMetamaskAccount(account));
-    }, [account]);
+        active && account && dispatch(basicActions.setMetamaskAccount({active, account}));
+    }, [active, account]);
 
     const connect = () => activateBrowserWallet();
 
+    // Reset metamask account data and disconnect from metamask
     const disconnect = () => {
         deactivate();
-        dispatch(basicActions.setMetamaskAccount(null));
+        dispatch(basicActions.resetMetamaskAccount());
     };
 
     if (account) return <SAccount>{account}</SAccount>;

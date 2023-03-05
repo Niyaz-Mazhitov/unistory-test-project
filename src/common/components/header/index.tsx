@@ -9,9 +9,9 @@ export default function Header(props: IHeaderProps) {
     const {children} = props;
 
     return (
-        <S.Container>
+        <S.Header>
             <S.Logo>Logo</S.Logo>
             {children}
-        </S.Container>
+        </S.Header>
     );
 }
