@@ -1,9 +1,10 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
 import {baseUrl} from '../../../common/api';
 import {IMember} from '../interfaces';
+import {PaginationType} from '../../../common/types';
 
 export interface IFindAllMembersRes {
-    meta: { currentPage: number; perPage: number; totalPages: number },
+    meta: PaginationType,
     items: IMember[];
 }
 
@@ -11,9 +12,9 @@ export const memberApi = createApi({
     reducerPath: 'memberApi',
     baseQuery: fetchBaseQuery({baseUrl}),
     endpoints: (builder) => ({
-        findAllMembers: builder.query<IFindAllMembersRes, string>({
-            query: () => ({
-                url: 'data'
+        findAllMembers: builder.query<IFindAllMembersRes, { page: number }>({
+            query: ({page}: { page: number }) => ({
+                url: `data?page=${page}&perPage=50`
             })
         }),
 

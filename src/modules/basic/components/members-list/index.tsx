@@ -1,27 +1,44 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import * as S from './styles';
-import {IFindAllMembersRes, useFindAllMembersQuery} from '../../api';
+import {useFindAllMembersQuery} from '../../api';
 import {NavLink} from 'react-router-dom';
 import {useAppDispatch, useAppSelector} from '../../../../common/store';
 import {basicActions} from '../../store';
+import {IMember} from '../../interfaces';
+import Button from '../../../../common/components/button';
 
 export default function MembersList() {
-    const {isLoading, data} = useFindAllMembersQuery('');
+    const [page, setPage] = useState<number>(15);
+    const [isAll, setIsAll] = useState<boolean>(false);
+    const [members, setMembers] = useState<IMember[]>([]);
+    const {data, isLoading, isFetching} = useFindAllMembersQuery({page});
+
+    useEffect(() => {
+        if (data?.items.length) {
+            setIsAll(page + 1 === data.meta.totalPages);
+            setMembers(prevState => [...prevState, ...data.items]);
+        }
+    }, [data]);
 
     return (
         <S.Container>
             <h1>Participation listing (enable only for participants)</h1>
-            {isLoading ? <S.Loading><h1>Loading...</h1></S.Loading> : <Table data={data}/>}
+            {isLoading ? <S.Loading><h1>Loading...</h1></S.Loading> : <Table members={members}/>}
+            <S.FindMore onClick={() => setPage(prevState => prevState + 1)}>
+                <Button disabled={isAll || isFetching}>
+                    {isFetching ? 'Loading...' : isAll ? 'The whole list' : 'Show more'}
+                </Button>
+            </S.FindMore>
         </S.Container>
     );
 }
 
-function Table(props: { data: undefined | IFindAllMembersRes }) {
+function Table(props: { members: IMember[] }) {
     return (
         <S.TableContainer>
             <S.Table>
                 <TableHead/>
-                {props.data && <TableBody data={props.data}/>}
+                {<TableBody members={props.members}/>}
             </S.Table>
         </S.TableContainer>
     );
@@ -39,18 +56,18 @@ function TableHead() {
     );
 }
 
-function TableBody(props: { data: IFindAllMembersRes }) {
-    const {data} = props;
+function TableBody(props: { members: IMember[] }) {
+    const {members} = props;
     const isShown = useAppSelector(state => state.basic.userData.isShown);
 
     return (
         <tbody>
         {isShown && <UserData/>}
-        {data.items.map(person => (
-            <S.Tr key={person.id}>
-                <td><NavLink to={`/members/${person.id}`}>{person.username}</NavLink></td>
-                <td>{person.email}</td>
-                <td>{person.address}</td>
+        {members.map(member => (
+            <S.Tr key={member.id}>
+                <td><NavLink to={`/members/${member.id}`}>{member.username}</NavLink></td>
+                <td>{member.email}</td>
+                <td>{member.address}</td>
             </S.Tr>
         ))}
         </tbody>

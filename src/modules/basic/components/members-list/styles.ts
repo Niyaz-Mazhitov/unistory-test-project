@@ -2,7 +2,7 @@ import styled, {css} from 'styled-components';
 
 export const Container = styled.div`
   width: 100%;
-  max-height: 60vh;
+  max-height: 65vh;
   display: flex;
   flex-direction: column;
   gap: 35px;
@@ -20,6 +20,11 @@ export const Loading = styled.div`
   h1 {
     color: ${props => props.theme.color.primary};
   }
+`;
+
+export const FindMore = styled.div`
+  width: 100%;
+  text-align: center;
 `;
 
 export const TableContainer = styled.div`
