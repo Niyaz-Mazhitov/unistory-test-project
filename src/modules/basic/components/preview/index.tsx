@@ -13,7 +13,7 @@ export default function Preview() {
 
         timer = setTimeout(() => {
             setCoordinates({x: event.nativeEvent.offsetX - 160, y: event.nativeEvent.offsetY - 160});
-        }, 100);
+        }, 300);
     };
 
     const onLeave = () => {

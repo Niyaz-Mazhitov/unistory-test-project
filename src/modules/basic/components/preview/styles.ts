@@ -22,7 +22,7 @@ export const PlanetContainer = styled.div<{ x: number; y: number }>`
     height: 320px;
     top: ${props => props.y}px;
     left: ${props => props.x}px;
-    transition: 3s;
+    transition: 3.5s;
   }
 `;
 
