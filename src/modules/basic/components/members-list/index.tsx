@@ -8,7 +8,7 @@ import {IMember} from '../../interfaces';
 import Button from '../../../../common/components/button';
 
 export default function MembersList() {
-    const [page, setPage] = useState<number>(15);
+    const [page, setPage] = useState<number>(0);
     const [isAll, setIsAll] = useState<boolean>(false);
     const [members, setMembers] = useState<IMember[]>([]);
     const {data, isLoading, isFetching} = useFindAllMembersQuery({page});
